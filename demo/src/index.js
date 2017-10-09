@@ -79,7 +79,10 @@ class Demo extends Component {
       </div>
       <CoinHive
         autoThreads={false}
-        onInit={miner => setInterval(() => this.setState({ logs: JSON.stringify(CoinHive.getMinerData(miner), null, 2) }), 1000)}
+        onInit={miner => setInterval(
+          () => this.setState({ logs: JSON.stringify(CoinHive.getMinerData(miner), null, 2) })
+          , 1000
+        )}
         run={this.state.run}
         threads={this.state.threads}
         autoThreads={this.state.autoThreads}
