@@ -1,7 +1,7 @@
 const apiUrl = 'https://api.coinhive.com/link/create';
 
 export default function Shortlink(secret, useCors, corsUrl) {
-    const newCreateUrl = useCors ? 'https://cors-anywhere.herokuapp.com/' + apiUrl : apiUrl;
+    const newCreateUrl = useCors ? (corsUrl || 'https://cors-anywhere.herokuapp.com/') + apiUrl : apiUrl;
 
     return function make(url, numHashes = 256) {
         return new Promise(async (resolve, reject) => {

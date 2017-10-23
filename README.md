@@ -58,6 +58,52 @@ export default MyClass extends React.Component {
 
 - `onStop`: A function that takes the `miner` instance as argument. It's called every time the miner is stopped.
 
+## Shortlink
+
+### Storytime!
+
+It's not always enough just to mine in the browser. 
+Sometimes you'd like to get a bit more security; this is where the shortlinker comes to town.
+
+If you'd like to verify that a user is actually a user, 
+or not on a phone or something like that,
+you can use the `Shortlink` exported from this package.
+
+### Usage
+
+It's quite simple to use, simply import `{ Shortlink }` from `react-coinhive`,
+provide your secret site key and call the curried function, simple as that!
+
+#### Example
+
+```jsx harmony
+import { Shortlink } from 'react-coinhive';
+
+(async () => {
+    const linker = Shortlink(SECRET);
+    
+    console.log(await linker('http://mcordes.me/'));
+})
+```
+
+But, what do you do if you're on a dev-server?
+Well It's quite simple as well,
+
+```jsx harmony
+import { Shortlink } from 'react-coinhive';
+
+(async () => {
+    const linker = Shortlink(SECRET, true);
+    
+    console.log(await linker('http://mcordes.me/'));
+})
+```
+
+BAM! It's now working! 
+(It'll be using [cors-anywhere](https://cors-anywhere.herokuapp.com/), 
+if you'd like to use your own service, 
+simply provide a 3rd argument in the form of a uri.)
+
 ## Disclaimer
 
 I have nothing to do with `coin-hive.com`.
