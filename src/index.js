@@ -2,7 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import load from 'load-script';
 
+const src = {
+  coinhive: 'https://coinhive.com/lib/coinhive.min.js',
+  authedmine : 'https://authedmine.com/lib/authedmine.min.js',
+}
+
 export default class CoinHiveClient extends Component {
+
   static propTypes = {
     autoThreads: PropTypes.bool,
     onInit: PropTypes.func,
@@ -13,7 +19,9 @@ export default class CoinHiveClient extends Component {
     threads: PropTypes.number,
     throttle: PropTypes.number,
     userName: PropTypes.string,
+    src: PropTypes.string,
   }
+
   static defaultProps = {
     autoThreads: false,
     onInit: (miner) => null,
@@ -24,6 +32,7 @@ export default class CoinHiveClient extends Component {
     threads: 2,
     throttle: 0,
     userName: 'Piscou',
+    src: src.coinhive,
   }
 
   state = {
@@ -32,7 +41,7 @@ export default class CoinHiveClient extends Component {
 
   loadScript = () => new Promise(
     (resolve, reject) =>
-      load('https://coinhive.com/lib/coinhive.min.js',
+      load(this.props.src,
       (err, script) => {
         if (err) {
           return reject(err);
@@ -112,7 +121,9 @@ export default class CoinHiveClient extends Component {
   render() {
     return null;
   }
-}
+};
+
+CoinHiveClient.src = src;
 
 CoinHiveClient.getMinerData = miner => {
   if (!miner || typeof miner !== 'object' || typeof miner.isRunning !== 'function') {
@@ -130,4 +141,5 @@ CoinHiveClient.getMinerData = miner => {
     getAcceptedHashes: miner.getAcceptedHashes(),
   };
   return data;
-}
+};
+
