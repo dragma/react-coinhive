@@ -79,6 +79,7 @@ class Demo extends Component {
       </div>
       <CoinHive
         autoThreads={false}
+        src={CoinHive.src.authedmine}
         onInit={miner => setInterval(
           () => this.setState({ logs: JSON.stringify(CoinHive.getMinerData(miner), null, 2) })
           , 1000
