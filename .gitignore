@@ -5,5 +5,3 @@
 /node_modules
 /umd
 npm-debug.log*
-yarn.*
-.idea/

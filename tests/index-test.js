@@ -2,9 +2,7 @@ import expect from 'expect'
 import React from 'react'
 import {render, unmountComponentAtNode} from 'react-dom'
 
-import CoinHiveClient, { Shortlink } from 'src/index'
-
-const SECRET = '';
+import Component from 'src/'
 
 describe('Component', () => {
   let node
@@ -18,17 +16,8 @@ describe('Component', () => {
   })
 
   it('displays a welcome message', () => {
-    render(<CoinHiveClient/>, node, () => {
+    render(<Component/>, node, () => {
       expect(node.innerHTML).toContain('Welcome to React components')
     })
   })
 })
-
-describe('Shortlink', () => {
-    it('returns a link', () => {
-        const linker = new Shortlink(SECRET, true);
-        linker('http://mcordes.me/')
-            .then(res => expect(JSON.stringify(res)).toContain("success"))
-            .catch(err => expect(false).toBe(true));
-    });
-});
